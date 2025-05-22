@@ -1,0 +1,31 @@
+@startuml Vue logique
+
+class Produit {
+  +id: int
+  +nom: str
+  +categorie: str
+  +prix: float
+  +quantite: int
+}
+
+class Vente {
+  +id: int
+  +date: datetime
+  +total: float
+  +produits: List[Produit]
+}
+
+class Magasin {
+  +stock: List[Produit]
+  +ventes: List[Vente]
+  +rechercher_produit()
+  +enregistrer_vente()
+  +gerer_retour()
+  +consulter_stock()
+}
+
+Magasin --> Produit
+Magasin --> Vente
+Vente --> Produit
+
+@enduml

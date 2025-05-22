@@ -1,0 +1,12 @@
+@startuml Rechercher un produit
+actor Console
+participant Service
+database "BD SQLite" as DB
+skinparam mirrorActors false
+
+
+Console -> Service : rechercher_produit(nom)
+Service -> DB : chercher_produits(nom)
+DB --> Service : liste de produits
+Service --> Console : liste de produits
+@enduml

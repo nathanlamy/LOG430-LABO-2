@@ -1,0 +1,10 @@
+@startuml Enregistrer une vente
+actor Console
+participant Service
+database "BD SQLite" as DB
+
+Console -> Service : enregistrer_vente(liste_produits)
+Service -> DB : ajouter_vente(liste_produits)
+DB --> Service : confirmation
+Service --> Console : confirmation
+@enduml

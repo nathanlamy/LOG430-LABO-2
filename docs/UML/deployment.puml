@@ -1,0 +1,11 @@
+@startuml Vue de déploiement
+node "Application Console" {
+  component "Python + Rich"
+}
+
+node "Machine locale (VM Linux)" {
+  database "SQLite"
+}
+
+"Python + Rich" --> "SQLite" : Accès direct
+@enduml

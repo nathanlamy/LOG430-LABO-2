@@ -1,0 +1,19 @@
+@startuml Vue d'implémentation
+package "app" {
+  package "presentation" {
+    class "menu.py"
+  }
+  package "logique" {
+    class "gestion_magasin.py"
+  }
+  package "persistance" {
+    class "db.py"
+  }
+  class "main.py"
+}
+
+"main.py" --> "menu.py"
+"menu.py" --> "gestion_magasin.py"
+"gestion_magasin.py" --> "db.py"
+
+@enduml

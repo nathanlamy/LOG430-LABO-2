@@ -1,0 +1,17 @@
+@startuml Vue des cas d'utilisation
+
+actor Employe
+
+rectangle "Système de caisse" {
+  usecase "Rechercher un produit" as CU1
+  usecase "Enregistrer une vente" as CU2
+  usecase "Gérer un retour" as CU3
+  usecase "Consulter le stock" as CU4
+}
+
+Employe --> CU1
+Employe --> CU2
+Employe --> CU3
+Employe --> CU4
+
+@enduml

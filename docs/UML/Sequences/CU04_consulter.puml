@@ -1,0 +1,11 @@
+@startuml Consulter l'état du stock
+actor Console
+participant Service
+database "BD SQLite" as DB
+
+Console -> Service : consulter_stock()
+Service -> DB : get_stock()
+DB --> Service : stock
+Service --> Console : stock
+@enduml
+
