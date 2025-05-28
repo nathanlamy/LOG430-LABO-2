@@ -76,11 +76,11 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker image
-        run: docker build -t docker.io/${{ secrets.DOCKERHUB_USERNAME }}/projet-caisse .
+        run: docker build -t docker.io/${{ secrets.DOCKER_USERNAME }}/projet-caisse:${{ secrets.DOCKER_USERNAME }} .
 
-      - name: Push image to Docker Hub
-        run: docker push docker.io/${{ secrets.DOCKERHUB_USERNAME }}/projet-caisse
+      - name: Push Docker image
+        run: docker push docker.io/${{ secrets.DOCKER_USERNAME }}/projet-caisse:${{ secrets.DOCKER_USERNAME }}
