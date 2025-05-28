@@ -3,11 +3,9 @@ version: '3.8'
 services:
   caisse:
     build: .
-    # container_name: caisse-console
     volumes:
       - .:/app
     working_dir: /app
     environment:
       - PYTHONPATH=/app
     tty: true
-    # command: python app/main.py
