@@ -9,33 +9,27 @@ Ce projet est une application console simple de type système de caisse, permett
 - La consultation du stock  
 - L'affichage des ventes  
 
-L'application est structurée en 3 couches : interface console, logique service, et accès à une base de données SQLite.
+L'application est structurée en 3 couches : interface console, logique service, et accès à une base de données PostgreSQL.
 
 ---
 
 ## Instructions d'exécution
 
-### En local
+### Pour commencer le serveur postgres persistant une seule fois avec Docker
 
-    docker-compose run caisse
-    ou
-    python3 app/main.py
+    docker-compose -f docker-compose.db.yml up -d
 
 ---
 
-## Tests
-
-Actuellement, les tests peuvent être écrits à l’aide de `pytest`.
+## Exécution des tests avec Docker
 
 Pour lancer les tests (présents dans le dossier `tests/`) :
 
     docker-compose run caisse pytest
-    ou
-    pytest
 
 ---
 
-## Exécution avec Docker
+## Exécution du client avec Docker
 
 ### 1. Construire l'image Docker
 
@@ -44,12 +38,6 @@ Pour lancer les tests (présents dans le dossier `tests/`) :
 ### 2. Lancer le programme dans un conteneur
 
     docker run -it caisse
-
----
-
-## Compilation
-
-Aucune compilation nécessaire. Le projet est entièrement en Python.
 
 ---
 
@@ -69,13 +57,14 @@ Une fois l'application lancée, un menu interactif s'affiche :
 
 ## Choix technologiques
 
-| Élément                  | Choix                 | Justification                                                                 |
-|--------------------------|-----------------------|--------------------------------------------------------------------------------|
-| Langage de programmation | Python 3              | Simple, portable, déjà installé sur Ubuntu                                     |
-| Interface                | Console               | Suffisante pour un prototype fonctionnel                       |
-| Architecture             | 3 couches (MVC léger) | Séparation claire entre présentation, logique service et persistance           |
-| Base de données          | SQLite                | SGBD léger, local, sans configuration serveur                                  |
-| Stockage                 | Fichier `.db` local   | Permet de tester sans dépendances externes ni installation supplémentaire     |
+| Élément                  | Choix                        | Justification                                                                 |
+|--------------------------|------------------------------|------------------------------------------------------------------------------|
+| Langage de programmation | Python 3                     | Simple, portable, maintenu, et déjà installé sur Ubuntu                      |
+| Interface utilisateur    | Console                      | Suffisante pour un prototype interactif, rapide à mettre en place            |
+| Architecture             | 2-tiers                      | Séparation entre couche présentation (client) et couche persistance (DB)     |
+| Base de données          | PostgreSQL                   | Moteur SQL robuste, open-source, adapté à plusieurs clients en simultané     |
+| ORM                      | SQLAlchemy                   | Abstraction de la base et compatibilité multi-SGBD                           |
+| Conteneurisation         | Docker + Docker Compose      | Permet une exécution portable et reproductible sur différentes machines      |
 
 ---
 
@@ -96,6 +85,7 @@ Une fois l'application lancée, un menu interactif s'affiche :
     ├── magasin.db
     ├── Dockerfile
     ├── docker-compose.yml
+    ├── docker-compose.db.yml
     ├── README.md
     └── requirements.txt
 

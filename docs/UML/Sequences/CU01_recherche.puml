@@ -1,7 +1,7 @@
 @startuml Rechercher un produit
 actor Console
 participant Service
-database "BD SQLite" as DB
+database "BD PostgreSQL" as DB
 skinparam mirrorActors false
 
 

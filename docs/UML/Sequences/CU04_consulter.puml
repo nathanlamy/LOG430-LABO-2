@@ -1,7 +1,7 @@
 @startuml Consulter l'état du stock
 actor Console
 participant Service
-database "BD SQLite" as DB
+database "BD SQLiPostgreSQLte" as DB
 
 Console -> Service : consulter_stock()
 Service -> DB : get_stock()

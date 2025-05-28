@@ -1,11 +1,13 @@
-@startuml Vue de déploiement
-node "Application Console" {
-  component "Python + Rich"
+@startuml Vue_de_deploiement
+
+node "Client Console (VM Linux)" {
+  component "Python + Rich + SQLAlchemy"
 }
 
-node "Machine locale (VM Linux)" {
-  database "SQLite"
+node "Serveur PostgreSQL (Docker)" {
+  database "PostgreSQL"
 }
 
-"Python + Rich" --> "SQLite" : Accès direct
+"Python + Rich + SQLAlchemy" --> "PostgreSQL" : Connexion via TCP/IP (DATABASE_URL)
+
 @enduml

@@ -3,16 +3,17 @@
 **STATUS**: Accepted
 
 **CONTEXT**:  
-Il faut assurer que chaque vente enregistrée reste cohérente.
+Le système doit garantir la cohérence des données lors des ventes, même avec plusieurs clients accédant à la base en simultané.
 
 **DECISION**:  
-Utiliser SQLite avec commit explicite après chaque opération complète.
+Utiliser PostgreSQL comme système de gestion de base de données, avec SQLAlchemy pour la gestion des transactions. Les opérations critiques (ventes, suppressions) sont encapsulées dans une session explicite.
 
 **CONSEQUENCES**:  
-Pas de transaction partielle. Simplicité assurée, mais sans rollback complexe.
+Les transactions sont automatiquement gérées par SQLAlchemy avec `session.commit()` et `session.rollback()` en cas d'erreur. Cela offre robustesse et extensibilité sans complexité manuelle.
 
 **COMPLIANCE**:  
-Chaque écriture est confirmée par un `conn.commit()`.
+Chaque opération d’écriture ou suppression passe par une session SQLAlchemy commitée manuellement.
+
 
 **NOTES**:  
-Rédigé par Nathan Lamy - 2025-05-21
+Modifié par Nathan Lamy - 2025-05-27

@@ -1,31 +1,25 @@
-@startuml Vue logique
+@startuml Vue_logique
 
 class Produit {
   +id: int
   +nom: str
   +categorie: str
-  +prix: float
-  +quantite: int
 }
 
 class Vente {
   +id: int
   +date: datetime
-  +total: float
+  +total: int
   +produits: List[Produit]
 }
 
-class Magasin {
-  +stock: List[Produit]
-  +ventes: List[Vente]
-  +rechercher_produit()
-  +enregistrer_vente()
-  +gerer_retour()
-  +consulter_stock()
+class produits_vendus {
+  +vente_id: int
+  +produit_id: int
 }
 
-Magasin --> Produit
-Magasin --> Vente
-Vente --> Produit
+Produit <-- produits_vendus
+Vente <-- produits_vendus
+Vente --> Produit : relation many-to-many
 
 @enduml

@@ -1,2 +1,4 @@
 rich
 pytest
+sqlalchemy
+psycopg2-binary
