@@ -25,43 +25,43 @@ jobs:
       - name: Run flake8
         run: flake8 app/ tests/
 
-  # test:
-  #   runs-on: ubuntu-latest
-  #   services:
-  #     postgres:
-  #       image: postgres:15
-  #       env:
-  #         POSTGRES_DB: magasin
-  #         POSTGRES_USER: magasin_user
-  #         POSTGRES_PASSWORD: secret
-  #       ports:
-  #         - 5432:5432
-  #       options: >-
-  #         --health-cmd pg_isready
-  #         --health-interval 10s
-  #         --health-timeout 5s
-  #         --health-retries 5
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_DB: magasin
+          POSTGRES_USER: magasin_user
+          POSTGRES_PASSWORD: secret
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
-  #   steps:
-  #     - uses: actions/checkout@v3
+    steps:
+      - uses: actions/checkout@v3
 
-  #     - name: Set up Python
-  #       uses: actions/setup-python@v4
-  #       with:
-  #         python-version: '3.11'
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
 
-  #     - name: Install dependencies
-  #       run: |
-  #         python -m pip install --upgrade pip
-  #         pip install -r requirements.txt
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-  #     - name: Set DATABASE_URL env var
-  #       run: echo "DATABASE_URL=postgresql+psycopg2://magasin_user:secret@10.194.32.204:5432/magasin" >> $GITHUB_ENV
+      - name: Set DATABASE_URL env var
+        run: echo "DATABASE_URL=postgresql+psycopg2://magasin_user:secret@10.194.32.204:5432/magasin" >> $GITHUB_ENV
 
-  #     - name: Add app to PYTHONPATH
-  #       run: |
-  #         export PYTHONPATH=$PYTHONPATH:$(pwd)/app
-  #         pytest
+      - name: Add app to PYTHONPATH
+        run: |
+          export PYTHONPATH=$PYTHONPATH:$(pwd)/app
+          pytest
 
 
       # - name: Run tests
