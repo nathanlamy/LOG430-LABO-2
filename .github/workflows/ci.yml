@@ -58,10 +58,13 @@ jobs:
       - name: Set DATABASE_URL env var
         run: echo "DATABASE_URL=postgresql+psycopg2://magasin_user:secret@10.194.32.204:5432/magasin" >> $GITHUB_ENV
 
-      - name: Add app to PYTHONPATH
-        run: |
-          export PYTHONPATH=$PYTHONPATH:$(pwd)/app
-          pytest
+      # - name: Add app to PYTHONPATH
+      #   run: |
+      #     export PYTHONPATH=$PYTHONPATH:$(pwd)/app
+      #     pytest
+
+      - name: Run tests
+        run: docker-compose run caisse pytest
 
   docker:
     runs-on: ubuntu-latest
