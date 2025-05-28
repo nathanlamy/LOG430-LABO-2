@@ -64,7 +64,7 @@ jobs:
       #     pytest
 
       - name: Run tests
-        run: docker-compose run caisse pytest
+        run: pytest
 
   docker:
     runs-on: ubuntu-latest
