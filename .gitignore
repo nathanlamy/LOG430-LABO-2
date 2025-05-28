@@ -9,9 +9,6 @@ htmlcov/
 .cache/
 .pytest_cache/
 
-# SQLite DB
-*.db
-
 # Environnement virtuel
 venv/
 .env/
