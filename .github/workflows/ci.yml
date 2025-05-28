@@ -60,7 +60,6 @@ jobs:
 
       - name: Add app to PYTHONPATH
         run: |
-          export PYTHONPATH=$PYTHONPATH:$(pwd)/app
           pytest
 
 
