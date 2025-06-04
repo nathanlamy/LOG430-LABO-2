@@ -22,7 +22,7 @@ services:
     environment:
       - PYTHONPATH=/app
       - DB_HOST=10.194.32.204 # IP de la VM
-      - DB_PORT=5432
+      - DB_PORT=15432
       - DB_NAME=magasin
       - DB_USER=magasin_user
       - DB_PASSWORD=secret
@@ -42,7 +42,7 @@ services:
     environment:
       - PYTHONPATH=/app
       - DB_HOST=db
-      - DB_PORT=5432
+      - DB_PORT=15432
       - DB_NAME=magasin
       - DB_USER=magasin_user
       - DB_PASSWORD=secret
