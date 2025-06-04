@@ -1,8 +1,15 @@
 from sqlalchemy import create_engine, Column, Integer, String, DateTime, ForeignKey, Table
 from sqlalchemy.orm import sessionmaker, relationship, declarative_base
 from datetime import datetime
+import os
 
-DATABASE_URL = "postgresql+psycopg2://magasin_user:secret@10.194.32.204:5432/magasin"
+DB_USER = os.getenv("DB_USER", "magasin_user")
+DB_PASSWORD = os.getenv("DB_PASSWORD", "secret")
+DB_HOST = os.getenv("DB_HOST", "localhost")
+DB_PORT = os.getenv("DB_PORT", "5432")
+DB_NAME = os.getenv("DB_NAME", "magasin")
+
+DATABASE_URL = f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 Base = declarative_base()
 engine = create_engine(DATABASE_URL)
