@@ -2,10 +2,26 @@ version: '3.8'
 
 services:
   caisse:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: projet-caisse
+    image: projet-caisse:nathanlamy
+    environment:
+      - PYTHONPATH=/app
+    volumes:
+      - .:/app
+    tty: true
+
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: projet-caisse:nathanlamy
+    container_name: tests
+    command: pytest
+    environment:
+      - PYTHONPATH=/app
     volumes:
       - .:/app
     working_dir: /app
-    environment:
-      - PYTHONPATH=/app
-    tty: true

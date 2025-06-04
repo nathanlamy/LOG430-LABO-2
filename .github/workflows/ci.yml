@@ -55,16 +55,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Set DATABASE_URL env var
-        run: echo "DATABASE_URL=postgresql+psycopg2://magasin_user:secret@10.194.32.204:5432/magasin" >> $GITHUB_ENV
+      # - name: Set DATABASE_URL env var
+      #   run: echo "DATABASE_URL=postgresql+psycopg2://magasin_user:secret@10.194.32.204:5432/magasin" >> $GITHUB_ENV
 
-      - name: Add app to PYTHONPATH
-        run: |
-          pytest
-
-
-      # - name: Run tests
-      #   run: pytest
+      - name: Run tests
+        run: pytest
 
   docker:
     runs-on: ubuntu-latest

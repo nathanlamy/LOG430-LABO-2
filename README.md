@@ -25,7 +25,7 @@ L'application est structurée en 3 couches : interface console, logique service,
 
 Pour lancer les tests (présents dans le dossier `tests/`) :
 
-    docker-compose run caisse pytest
+    docker-compose run tests
 
 ---
 
