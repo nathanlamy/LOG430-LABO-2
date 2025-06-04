@@ -7,8 +7,6 @@ services:
       POSTGRES_DB: magasin
       POSTGRES_USER: magasin_user
       POSTGRES_PASSWORD: secret
-    ports:
-      - "5432:5432"
 
   tests:
     build:
