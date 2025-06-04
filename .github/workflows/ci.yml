@@ -55,15 +55,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # - name: Set DATABASE_URL env var
-      #   run: echo "DATABASE_URL=postgresql+psycopg2://magasin_user:secret@10.194.32.204:5432/magasin" >> $GITHUB_ENV
-
       - name: Run tests
-        run: docker-compose run tests
+        run: docker compose run --rm tests
 
   docker:
     runs-on: ubuntu-latest
-    needs: [lint]
+    needs: [lint, test]
     steps:
       - uses: actions/checkout@v3
 
