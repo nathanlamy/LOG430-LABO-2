@@ -59,7 +59,7 @@ jobs:
       #   run: echo "DATABASE_URL=postgresql+psycopg2://magasin_user:secret@10.194.32.204:5432/magasin" >> $GITHUB_ENV
 
       - name: Run tests
-        run: pytest
+        run: docker-compose run tests
 
   docker:
     runs-on: ubuntu-latest
