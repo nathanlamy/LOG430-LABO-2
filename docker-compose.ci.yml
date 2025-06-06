@@ -7,13 +7,18 @@ services:
       POSTGRES_DB: magasin
       POSTGRES_USER: magasin_user
       POSTGRES_PASSWORD: secret
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U magasin_user"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
   tests:
     build:
       context: .
       dockerfile: Dockerfile
     image: projet-caisse:nathanlamy
-    command: pytest
+    command: sh -c "./wait-for-db.sh"
     environment:
       - PYTHONPATH=/app
       - DB_HOST=db
@@ -22,7 +27,8 @@ services:
       - DB_USER=magasin_user
       - DB_PASSWORD=secret
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     volumes:
       - .:/app
     working_dir: /app
