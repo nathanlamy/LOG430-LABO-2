@@ -21,7 +21,7 @@ services:
     command: sh -c "./wait-for-db.sh"
     environment:
       - PYTHONPATH=/app
-      - DB_HOST=db
+      - DB_HOST=db-ci
       - DB_PORT=5432
       - DB_NAME=magasin
       - DB_USER=magasin_user
