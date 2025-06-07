@@ -27,7 +27,7 @@ services:
       - DB_USER=magasin_user
       - DB_PASSWORD=secret
     depends_on:
-      db:
+      db-ci:
         condition: service_healthy
     volumes:
       - .:/app
