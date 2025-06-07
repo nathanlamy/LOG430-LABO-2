@@ -21,7 +21,7 @@ Ce projet est une application de gestion de caisse et de stocks répartis sur pl
 
 ### 1. Lancer la base de données (à faire une seule fois)  
 ```bash
-docker-compose -f docker-compose.db.yml up -d
+docker-compose up -d db
 ```
 
 ### 2. Démarrer l’interface Web (depuis un client magasin ou gestionnaire)  
@@ -39,6 +39,11 @@ docker-compose -f docker-compose.db.yml up -d
 docker-compose run tests
 ```
 
+## Réinitialiser la base de données
+Si vous voulez repartir à zéro :
+```bash
+    ./reset-db.sh
+```
 ---
 
 ## Utilisation
@@ -84,7 +89,6 @@ LOG430-LABO-2/
 ├── tests/
 │   └── test_fonctionnel.py
 ├── docker-compose.yml
-├── docker-compose.db.yml
 ├── run-client.sh
 ├── Dockerfile
 ├── requirements.txt

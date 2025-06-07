@@ -100,12 +100,11 @@ def initialiser_db():
             for produit in produits:
                 stock_items.append(Stock(magasin_id=magasin.id, produit_id=produit.id, quantite=50, seuil_critique=10))
         session.add_all(stock_items)
-    
+
     if session.query(StockCentral).count() == 0:
         produits = session.query(Produit).all()
         stock_central = [StockCentral(produit_id=p.id, quantite=200, seuil_critique=30) for p in produits]
         session.add_all(stock_central)
-
 
     session.commit()
     session.close()
@@ -196,10 +195,10 @@ def get_ventes(magasin_id=None):
             "magasin": v.magasin.nom if v.magasin else None,
             "produits": [
                 {
-                    "nom": l.produit.nom,
-                    "quantite": l.quantite,
-                    "prix_unitaire": l.prix_unitaire
-                } for l in v.lignes
+                    "nom": ligne.produit.nom,
+                    "quantite": ligne.quantite,
+                    "prix_unitaire": ligne.prix_unitaire
+                } for ligne in v.lignes
             ]
         })
     session.close()

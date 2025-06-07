@@ -1,10 +1,10 @@
 #!/bin/bash
 
-docker compose -f docker-compose.db.yml down -v
+docker compose down -v
 
-docker compose -f docker-compose.db.yml build --no-cache
+docker compose build --no-cache
 
-docker compose -f docker-compose.db.yml up -d
+docker compose up -d db
 
 # Try connecting for up to 20s
 for i in {1..20}; do
