@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tableau de bord</title>
+</head>
+<body>
+    <h1>Tableau de bord</h1>
+
+    <h2>Chiffre d'affaires par magasin</h2>
+    <ul>
+        {% for magasin, total in stats.chiffre_affaires %}
+            <li>{{ magasin }} : {{ total }} $</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Produits en rupture de stock</h2>
+    <ul>
+        {% for magasin, produit, quantite, seuil in stats.ruptures %}
+            <li>{{ magasin }} – {{ produit }} : {{ quantite }} (seuil : {{ seuil }})</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Produits en surstock</h2>
+    <ul>
+        {% for magasin, produit, quantite, seuil in stats.surstock %}
+            <li>{{ magasin }} – {{ produit }} : {{ quantite }} (seuil : {{ seuil }})</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Tendances hebdomadaires</h2>
+    <ul>
+        {% for semaine, total in stats.tendances %}
+            <li>Semaine {{ semaine }} : {{ total }} $</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

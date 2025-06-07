@@ -1,0 +1,12 @@
+@startuml Enregistrer_une_vente
+
+actor "Employé (Web)" as Web
+participant "Service Python" as Service
+database "PostgreSQL" as DB
+
+Web -> Service : enregistrer_vente(liste_produits, magasin_id)
+Service -> DB : INSERT INTO ventes (...) + lignes_vente (...)
+DB --> Service : ID de la vente + confirmation
+Service --> Web : vente enregistrée avec succès
+
+@enduml

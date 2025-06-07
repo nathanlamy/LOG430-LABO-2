@@ -17,3 +17,4 @@ Chaque opération d’écriture ou suppression passe par une session SQLAlchemy 
 
 **NOTES**:  
 Modifié par Nathan Lamy - 2025-05-27
+

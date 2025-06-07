@@ -1,0 +1,12 @@
+@startuml Rechercher_un_produit
+
+actor "Utilisateur Web" as Web
+participant "Service Python" as Service
+database "PostgreSQL" as DB
+
+Web -> Service : rechercher_produit(nom)
+Service -> DB : SELECT * FROM produits WHERE nom = nom
+DB --> Service : liste de produits
+Service --> Web : afficher les résultats
+
+@enduml

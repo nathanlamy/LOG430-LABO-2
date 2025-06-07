@@ -1,0 +1,15 @@
+@startuml Tableau_de_bord_performances
+
+actor "Gestionnaire (Web)" as Gestionnaire
+participant "Service Python" as Service
+database "PostgreSQL" as DB
+
+Gestionnaire -> Service : afficher_tableau_de_bord()
+Service -> DB : SELECT chiffre_affaires_par_magasin
+Service -> DB : SELECT ruptures_de_stock
+Service -> DB : SELECT produits_en_surstock
+Service -> DB : SELECT tendances_hebdomadaires
+DB --> Service : données agrégées
+Service --> Gestionnaire : dashboard synthétique
+
+@enduml

@@ -1,13 +1,14 @@
 @startuml Vue_de_deploiement
 
-node "Client Console (VM Linux)" {
-  component "Python + Rich + SQLAlchemy"
+node "Client Web (Docker)" {
+  component "Flask Web App"
+  component "SQLAlchemy"
 }
 
 node "Serveur PostgreSQL (Docker)" {
   database "PostgreSQL"
 }
 
-"Python + Rich + SQLAlchemy" --> "PostgreSQL" : Connexion via TCP/IP (DATABASE_URL)
+"Flask Web App" --> "PostgreSQL" : Connexion via TCP/IP (env DATABASE_URL)
 
 @enduml

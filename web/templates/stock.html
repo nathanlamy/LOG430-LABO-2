@@ -1,0 +1,8 @@
+<h2>Stock disponible (Magasin ID 1)</h2>
+<ul>
+  {% for p in produits %}
+    <li>{{ p["nom"] }} (Cat: {{ p["categorie"] }}) - Quantité: {{ p["quantite"] }}</li>
+  {% endfor %}
+</ul>
+
+<a href="/">Retour au menu</a>

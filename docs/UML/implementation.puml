@@ -1,19 +1,22 @@
-@startuml Vue d'implémentation
+@startuml Vue_d_implementation
+
 package "app" {
-  package "presentation" {
-    class "menu.py"
+  package "presentation (web)" {
+    class "app.py"
+    class "templates/*.html"
   }
+
   package "logique" {
     class "gestion_magasin.py"
   }
+
   package "persistance" {
     class "db.py"
   }
-  class "main.py"
 }
 
-"main.py" --> "menu.py"
-"menu.py" --> "gestion_magasin.py"
+"app.py" --> "gestion_magasin.py"
 "gestion_magasin.py" --> "db.py"
+"app.py" --> "templates/*.html" : rendu HTML via Flask
 
 @enduml

@@ -1,17 +1,41 @@
-@startuml Vue des cas d'utilisation
+@startuml Vue_des_cas_d_utilisation
 
-actor Employe
+left to right direction
+
+actor "Employé de magasin" as Employe
+actor "Gestionnaire\nmaison mère" as Gestionnaire
+actor "Responsable\nlogistique" as Logistique
 
 rectangle "Système de caisse" {
-  usecase "Rechercher un produit" as CU1
-  usecase "Enregistrer une vente" as CU2
-  usecase "Gérer un retour" as CU3
-  usecase "Consulter le stock" as CU4
+  package "Opérations de caisse" {
+    usecase "Rechercher un produit" as UC6
+    usecase "Enregistrer une vente" as UC7
+    usecase "Annuler une vente" as UC8
+    usecase "Afficher les ventes" as UC9
+  }
+
+  package "Gestion magasin" {
+    usecase "UC2: Consulter le stock central" as UC2
+    usecase "UC6: Approvisionner un magasin" as UC5
+  }
+
+  package "Gestion centrale" {
+    usecase "UC1: Générer un rapport consolidé" as UC1
+    usecase "UC3: Tableau de bord de performance" as UC3
+    usecase "UC4: Mettre à jour un produit" as UC4
+  }
 }
 
-Employe --> CU1
-Employe --> CU2
-Employe --> CU3
-Employe --> CU4
+Employe --> UC6
+Employe --> UC7
+Employe --> UC8
+Employe --> UC9
+Employe --> UC2
+
+Gestionnaire --> UC1
+Gestionnaire --> UC3
+Gestionnaire --> UC4
+
+Logistique --> UC5
 
 @enduml

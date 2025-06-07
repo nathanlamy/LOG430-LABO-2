@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Rapport Consolidé</title>
+</head>
+<body>
+    <h1>Rapport Consolidé des Ventes</h1>
+
+    <h2>Chiffre d’affaires par magasin</h2>
+    <ul>
+        {% for nom, total in ventes %}
+            <li>{{ nom }} : {{ total }} $</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Produits les plus vendus</h2>
+    <ul>
+        {% for nom, quantite in produits %}
+            <li>{{ nom }} : {{ quantite }} unités</li>
+        {% endfor %}
+    </ul>
+</body>
+<a href="/">Retour au menu</a>
+</html>

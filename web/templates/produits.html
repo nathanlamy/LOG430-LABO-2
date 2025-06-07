@@ -1,0 +1,19 @@
+<h2>Recherche de produits</h2>
+<form action="/produits">
+  Critère:
+  <select name="critere">
+    <option value="id">ID</option>
+    <option value="nom">Nom</option>
+    <option value="categorie">Catégorie</option>
+  </select>
+  Valeur: <input type="text" name="valeur" />
+  <input type="submit" value="Rechercher" />
+</form>
+
+<ul>
+  {% for p in produits %}
+    <li>{{ p.id }} - {{ p.nom }} ({{ p.categorie }})</li>
+  {% endfor %}
+</ul>
+
+<a href="/">Retour au menu</a>

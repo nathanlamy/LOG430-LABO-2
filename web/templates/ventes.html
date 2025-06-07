@@ -1,0 +1,21 @@
+<h2>Enregistrer une vente</h2>
+<form method="post">
+  IDs des produits (séparés par virgules): <input type="text" name="ids" />
+  <input type="submit" value="Enregistrer" />
+</form>
+
+<h2>Liste des ventes</h2>
+<ul>
+  {% for v in ventes %}
+    <li>
+      Vente #{{ v["id"] }} - Date: {{ v["date"] }} - Montant: {{ v["total"] }}$
+      <br>Produits: {{ v["produits"]|join(", ") }}
+      <form method="post" action="/annuler_vente">
+        <input type="hidden" name="vente_id" value="{{ v['id'] }}" />
+        <input type="submit" value="Annuler" />
+      </form>
+    </li>
+  {% endfor %}
+</ul>
+
+<a href="/">Retour au menu</a>

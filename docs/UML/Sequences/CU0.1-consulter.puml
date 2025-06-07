@@ -1,0 +1,12 @@
+@startuml Consulter_etat_du_stock
+
+actor "Employé (Web)" as Web
+participant "Service Python" as Service
+database "PostgreSQL" as DB
+
+Web -> Service : consulter_stock(magasin_id)
+Service -> DB : SELECT * FROM stocks WHERE magasin_id = ?
+DB --> Service : liste des stocks
+Service --> Web : afficher les stocks
+
+@enduml

@@ -1,25 +1,47 @@
 @startuml Vue_logique
 
+class Magasin {
+  +id: int
+  +nom: str
+  +quartier: str
+}
+
 class Produit {
   +id: int
   +nom: str
   +categorie: str
+  +prix: float
+  +description: str
+}
+
+class Stock {
+  +id: int
+  +produit_id: int
+  +magasin_id: int
+  +quantite: int
+  +seuil_critique: int
 }
 
 class Vente {
   +id: int
   +date: datetime
-  +total: int
-  +produits: List[Produit]
+  +total: float
+  +magasin_id: int
 }
 
-class produits_vendus {
+class LigneVente {
+  +id: int
   +vente_id: int
   +produit_id: int
+  +quantite: int
+  +prix_unitaire: float
 }
 
-Produit <-- produits_vendus
-Vente <-- produits_vendus
-Vente --> Produit : relation many-to-many
+Magasin "1" <-- "0..*" Stock
+Produit "1" <-- "0..*" Stock
+
+Magasin "1" <-- "0..*" Vente
+Vente "1" --> "1..*" LigneVente
+Produit "1" <-- "0..*" LigneVente
 
 @enduml

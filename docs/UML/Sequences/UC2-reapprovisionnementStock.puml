@@ -1,0 +1,17 @@
+@startuml Reapprovisionnement_stock
+
+actor "Employé Magasin (Web)" as Employe
+participant "Service Python" as Service
+database "PostgreSQL" as DB
+
+Employe -> Service : consulter_stock_central()
+Service -> DB : SELECT * FROM stocks WHERE magasin_id = centre_logistique
+DB --> Service : stock_disponible
+Service --> Employe : afficher stock
+
+Employe -> Service : initier_reapprovisionnement(produit_id, quantite)
+Service -> DB : INSERT INTO demandes_reapprovisionnement (...)
+DB --> Service : confirmation
+Service --> Employe : demande envoyée
+
+@enduml

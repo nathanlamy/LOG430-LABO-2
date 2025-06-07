@@ -1,0 +1,13 @@
+@startuml Annuler_une_vente
+
+actor "Employé (Web)" as Web
+participant "Service Python" as Service
+database "PostgreSQL" as DB
+
+Web -> Service : annuler_vente(id_vente)
+Service -> DB : DELETE FROM lignes_vente WHERE vente_id = id_vente
+Service -> DB : DELETE FROM ventes WHERE id = id_vente
+DB --> Service : confirmation suppression
+Service --> Web : vente annulée
+
+@enduml

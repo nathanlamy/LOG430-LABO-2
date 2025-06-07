@@ -16,3 +16,4 @@ Chaque fonctionnalité passe par ces trois modules distincts.
 
 **NOTES**:  
 Rédigé par Nathan Lamy - 2025-05-21
+

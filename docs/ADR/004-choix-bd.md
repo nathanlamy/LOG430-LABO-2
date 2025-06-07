@@ -9,10 +9,11 @@ Plusieurs clients doivent accéder à une base centralisée.
 Utiliser PostgreSQL avec conteneur Docker.
 
 **CONSEQUENCES**:  
-Supporte la concurrence et les transactions.Nécessite un conteneur actif.
+Supporte la concurrence et les transactions. Nécessite un conteneur actif.
 
 **COMPLIANCE**:  
 Connexion via `DATABASE_URL` dans l’environnement.
 
 **NOTES**:  
-Modifié par Nathan Lamy - 2025-05-27
+Modifié par Nathan Lamy - 2025-06-06
+

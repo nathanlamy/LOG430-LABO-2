@@ -3,16 +3,18 @@
 **STATUS**: Accepted
 
 **CONTEXT**:  
-Le projet est développé dans une machine virtuelle Ubuntu. Il doit être simple, rapide à exécuter et portable.
+Initialement, le projet devait être simple, rapide à exécuter et portable, dans une VM Ubuntu. Une interface console avait été choisie pour sa légèreté.
 
 **DECISION**:  
-Utiliser Python 3 en console locale (sans GUI ni serveur web).
+Migrer vers une application web légère en Python avec Flask. Cela permet une meilleure accessibilité et évolutivité pour les utilisateurs (employés et gestionnaires).
 
 **CONSEQUENCES**:  
-L'application reste légère, facile à lancer, mais sans interface graphique.
+L’application devient accessible via un navigateur web. Elle reste légère grâce à Flask, tout en offrant une expérience utilisateur améliorée par rapport à la console. Cela permet aussi une intégration plus facile des futurs cas d’utilisation (rapports, tableaux de bord...).
 
 **COMPLIANCE**:  
-Le projet est uniquement en Python console, sans dépendances externes lourdes.
+Le système est désormais basé sur Flask et HTML minimal, conteneurisé via Docker pour assurer la portabilité.
 
 **NOTES**:  
-Rédigé par Nathan Lamy - 2025-05-21
+Mise à jour par Nathan Lamy – 2025-06-06
+
+

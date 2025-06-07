@@ -15,21 +15,37 @@ def rechercher_produit():
         print("Critère invalide.")
         return
     for p in resultats:
-        print(p)
+        print(f"[{p['id']}] {p['nom']} - {p['categorie']} (${p['prix']}) - {p['description']}")
 
 def consulter_stock():
-    produits = get_stock()
+    magasin_id = int(input("ID du magasin : "))
+    produits = get_stock(magasin_id)
     for p in produits:
-        print(p)
+        print(f"Produit ID: {p['produit_id']} | Nom: {p['nom']} | Quantité: {p['quantite']} | Seuil critique: {p['seuil_critique']}")
 
 def enregistrer_vente_console():
-    ids = input("IDs des produits vendus (séparés par des virgules) : ")
-    try:
-        id_list = [int(x.strip()) for x in ids.split(",")]
-        vente_id = enregistrer_vente(id_list)
-        print(f"Vente enregistrée avec ID : {vente_id}")
-    except Exception as e:
-        print("Erreur :", e)
+    magasin_id = int(input("ID du magasin : "))
+    lignes = []
+    while True:
+        produit_id = input("Produit ID (ou vide pour terminer) : ")
+        if not produit_id.strip():
+            break
+        quantite = input("Quantité : ")
+        try:
+            lignes.append({
+                "produit_id": int(produit_id),
+                "quantite": int(quantite)
+            })
+        except ValueError:
+            print("Entrée invalide. Réessayez.")
+    if lignes:
+        try:
+            vente_id = enregistrer_vente(magasin_id, lignes)
+            print(f"Vente enregistrée avec ID : {vente_id}")
+        except Exception as e:
+            print("Erreur lors de l'enregistrement :", e)
+    else:
+        print("Aucune vente enregistrée.")
 
 def annuler_vente_console():
     vente_id = input("ID de la vente à annuler : ")
@@ -40,11 +56,13 @@ def annuler_vente_console():
         print("Erreur :", e)
 
 def afficher_ventes_console():
-    ventes = get_ventes()
+    magasin_id_input = input("ID du magasin (laisser vide pour tous) : ")
+    magasin_id = int(magasin_id_input) if magasin_id_input.strip() else None
+    ventes = get_ventes(magasin_id=magasin_id)
     if not ventes:
         print("Aucune vente enregistrée.")
         return
     for v in ventes:
-        produits_str = ", ".join(v["produits"])
-        print(f"ID Vente: {v['id']} | Date: {v['date']} | Total: {v['total']} produit(s)")
-        print(f"  Produits: {produits_str}")
+        print(f"ID Vente: {v['id']} | Date: {v['date']} | Total: ${v['total']:.2f} | Magasin: {v['magasin']}")
+        for produit in v['produits']:
+            print(f"  - {produit['nom']} x{produit['quantite']} @ ${produit['prix_unitaire']}")

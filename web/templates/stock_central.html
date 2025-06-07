@@ -1,0 +1,17 @@
+<h2>Stock Central</h2>
+<table>
+  <tr><th>Produit</th><th>Quantité</th><th>Action</th></tr>
+  {% for s in stocks %}
+  <tr>
+    <td>{{ s.produit.nom }}</td>
+    <td>{{ s.quantite }}</td>
+    <td>
+      <form action="/approvisionner/{{ s.produit.id }}" method="post">
+        <input type="number" name="quantite" min="1">
+        <button type="submit">Approvisionner</button>
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+<a href="/">Retour au menu</a>

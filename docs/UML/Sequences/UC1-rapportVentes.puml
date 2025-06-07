@@ -1,0 +1,14 @@
+@startuml Generer_rapport_consolide
+
+actor "Gestionnaire (Web)" as Gestionnaire
+participant "Service Python" as Service
+database "PostgreSQL" as DB
+
+Gestionnaire -> Service : demander_rapport()
+Service -> DB : SELECT ventes par magasin
+Service -> DB : SELECT produits les plus vendus
+Service -> DB : SELECT niveaux de stock
+DB --> Service : données consolidées
+Service --> Gestionnaire : rapport détaillé (HTML)
+
+@enduml

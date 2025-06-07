@@ -1,27 +1,12 @@
 version: '3.8'
 
 services:
-  db:
-    image: postgres:14
-    container_name: postgres-magasin2
-    environment:
-      POSTGRES_DB: magasin
-      POSTGRES_USER: magasin_user
-      POSTGRES_PASSWORD: secret
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
-
   caisse:
     build:
       context: .
-      dockerfile: Dockerfile
     container_name: projet-caisse
-    image: projet-caisse:nathanlamy
     environment:
-      - PYTHONPATH=/app
-      - DB_HOST=10.194.32.204 # IP de la VM
+      - DB_HOST=db
       - DB_PORT=5432
       - DB_NAME=magasin
       - DB_USER=magasin_user
@@ -29,15 +14,11 @@ services:
     volumes:
       - .:/app
     tty: true
-    depends_on:
-      - db
 
   tests:
     build:
       context: .
-      dockerfile: Dockerfile
     image: projet-caisse:nathanlamy
-    container_name: tests
     command: pytest
     environment:
       - PYTHONPATH=/app
@@ -46,11 +27,20 @@ services:
       - DB_NAME=magasin
       - DB_USER=magasin_user
       - DB_PASSWORD=secret
-    depends_on:
-      - db
     volumes:
       - .:/app
     working_dir: /app
 
-volumes:
-  postgres_data:
+  web:
+    build:
+      context: ./web
+    container_name: web-flask
+    ports:
+      - "5000:5000"
+    environment:
+      - PYTHONPATH=/app
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=magasin
+      - DB_USER=magasin_user
+      - DB_PASSWORD=secret

@@ -18,8 +18,7 @@ def afficher_menu_principal():
     initialiser_db()
 
     while True:
-        console.clear()
-        console.print(Panel.fit("[bold cyan]Système de Caisse[/bold cyan]", title="Menu Principal"))
+        console.print(Panel.fit("[bold cyan]Système de Caisse[/bold cyan]", title="Menu Principal122"))
 
         console.print("[green]1[/green]. Rechercher un produit")
         console.print("[green]2[/green]. Consulter le stock")
