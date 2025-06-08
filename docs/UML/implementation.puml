@@ -2,21 +2,16 @@
 
 package "app" {
   package "presentation (web)" {
-    class "app.py"
-    class "templates/*.html"
+    class "web/app.py"
+    class "web/templates/*.html"
   }
 
-  package "logique" {
-    class "gestion_magasin.py"
-  }
-
-  package "persistance" {
-    class "db.py"
+  package "persistance (accès BD)" {
+    class "app/database/db.py"
   }
 }
 
-"app.py" --> "gestion_magasin.py"
-"gestion_magasin.py" --> "db.py"
-"app.py" --> "templates/*.html" : rendu HTML via Flask
+"web/app.py" --> "app/database/db.py" : accès aux données
+"web/app.py" --> "web/templates/*.html" : rendu via Flask
 
 @enduml

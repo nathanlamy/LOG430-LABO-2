@@ -42,7 +42,7 @@ docker-compose run tests
 ## Réinitialiser la base de données
 Si vous voulez repartir à zéro :
 ```bash
-    ./reset-db.sh
+./reset-db.sh
 ```
 ---
 
@@ -55,7 +55,12 @@ Les fonctionnalités sont accessibles via des boutons clairs :
 - Enregistrer une vente  
 - Annuler une vente  
 - Afficher les ventes  
-- Accéder au tableau de bord et rapport (UC1, UC2, UC3)
+- La génération d’un rapport consolidé des ventes (UC1)
+- La consultation du stock central et demandes de réapprovisionnement (UC2)
+- La visualisation des performances globales (tableau de bord) (UC3)
+- Mise à jour des produits depuis la maison mère (UC4)
+- Approvisionnement depuis le centre logistique (UC6)
+
 
 ---
 
@@ -78,9 +83,8 @@ Les fonctionnalités sont accessibles via des boutons clairs :
 LOG430-LABO-2/
 ├── app/
 │   ├── database/
-│   │   └── db.py
-│   └── services/
-│       └── gestion_magasin.py
+│       └── db.py
+│   
 ├── web/
 │   ├── app.py
 │   ├── templates/
